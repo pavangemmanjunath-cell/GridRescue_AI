@@ -1,6 +1,6 @@
 // Captures the README screenshots with Playwright: every lens, the plan, the ESG report and each simulation type, at
 // 1600×900 as JPEG, into <repo>/assets/readme/. Needs the backend on :8000 and the dev server on :5173.
-// Usage (from the frontend folder):  node scripts/readme_shots.mjs
+// Usage (from the frontend folder):  node scripts/readme_shots.mjs     (E2E_BASE_URL for another app URL, SHOTS_GPU=0 for software rendering)
 import { createRequire } from 'node:module'
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { join, resolve } from 'node:path'
@@ -10,7 +10,9 @@ const require = createRequire(join(process.cwd(), 'package.json'))
 const { chromium } = require('@playwright/test')
 const base = process.env.E2E_BASE_URL || 'http://localhost:5173'
 const out = resolve(process.cwd(), '..', 'assets', 'readme'); mkdirSync(out, { recursive: true })
-const browser = await chromium.launch({ args: ['--use-angle=d3d11', '--enable-gpu', '--ignore-gpu-blocklist'] })
+// SHOTS_GPU=0 renders in software (slower, but leaves the GPU free for other work)
+const gpuArgs = process.env.SHOTS_GPU === '0' ? ['--use-gl=swiftshader', '--enable-unsafe-swiftshader'] : ['--use-angle=d3d11', '--enable-gpu', '--ignore-gpu-blocklist']
+const browser = await chromium.launch({ args: gpuArgs })
 const ctx = await browser.newContext({ viewport: { width: 1600, height: 900 }, acceptDownloads: true })
 const page = await ctx.newPage()
 const tid = (id) => page.getByTestId(id)
