@@ -22,9 +22,10 @@ First public release: the proof of concept for Global Energy Hackathon 2026, Bri
 - **Ask GridRescue**: retrieval over an internal SQLite database with an FTS5 index (BM25) and extractive answers with numbered citations; no language model is used. Assessment history is shown on Report › History.
 - **Web application** (React 19, TypeScript, Vite): Explorer with sun, wind, water, grid and new-site lenses; the relocation plan; Facility calculator; Advisor; Compare; Costs; Simulate (3D site through the outage, tagged with the selected location and lens); Build 3D; Learn; Report; hands-free page.
 - **Offline mode** (`GR_OFFLINE=1`) from bundled snapshots.
+- **One-click start**: `START.bat` checks Python and Node.js, installs on the first run, starts both servers, waits until they answer and opens the app; `start.sh` does the same on Linux and macOS. `GR_UI_PORT` selects another app port.
 - **Tests**: 63 pytest tests, 23 vitest tests and 10 Playwright GUI specs; GitHub Actions CI.
 - **Research-repository files**: licence, citation metadata, contributing guide, code of conduct, security policy, model and data cards, documentation in `docs/`, a quick-start example and a reproducible ML evaluation.
-- **Submission package** in `FINAL_DOC/`: POC summary, one-pager, 5-slide deck, demo video and pitch video.
+- **Submission package** in `FINAL_DOC/`: POC summary, one-pager, 5-slide deck, demo video (4:48) and pitch video (4:48, v7).
 
 ### Changed
 
