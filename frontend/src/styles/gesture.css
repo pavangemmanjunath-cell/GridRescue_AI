@@ -1,0 +1,47 @@
+/* ============================================================
+   Hands-free simulation (Brief 12, last page) — webcam behind, 3D over it, floating cards
+   ============================================================ */
+.gr-gest { position: relative; height: calc(100vh - 64px); overflow: hidden; background: #0B1A2E; }
+.gr-gest-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: scaleX(-1); opacity: 0.55; filter: saturate(0.8); }
+.gr-gest-scene { position: absolute; inset: 0; }
+.gr-gest-cursor { position: absolute; z-index: 30; width: 0; height: 0; pointer-events: none; }
+.gr-gest-cursor i { position: absolute; left: -14px; top: -14px; width: 28px; height: 28px; border-radius: 50%; border: 3px solid #fff; box-shadow: 0 0 0 4px rgba(8,17,31,0.45); transition: transform 80ms; }
+.gr-gest-cursor svg { position: absolute; left: -22px; top: -22px; width: 44px; height: 44px; transform: rotate(-90deg); }
+.gr-gest-head { position: absolute; z-index: 20; top: 14px; left: 20px; right: 20px; display: flex; align-items: center; gap: 18px; pointer-events: none; }
+.gr-gest-head > * { pointer-events: auto; }
+.gr-gest-head h1 { margin: 2px 0 0; font-family: var(--gr-font-display); font-size: 20px; color: #fff; }
+.gr-gest-steps { list-style: none; margin: 0 auto; padding: 4px; display: flex; gap: 4px; background: rgba(11,26,46,0.9); border: 1px solid var(--gr-divider); border-radius: 9999px; }
+.gr-gest-steps li { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--gr-fg-3); padding: 5px 12px 5px 5px; border-radius: 9999px; }
+.gr-gest-steps li span { width: 20px; height: 20px; border-radius: 50%; display: grid; place-items: center; font-size: 11px; font-weight: 700; background: rgba(255,255,255,0.08); }
+.gr-gest-steps li.now { color: #fff; background: rgba(74,222,128,0.14); }
+.gr-gest-steps li.now span, .gr-gest-steps li.done span { background: var(--gr-rescue); color: #08111F; }
+.gr-gest-cam { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--gr-fg-2); background: rgba(11,26,46,0.9); border: 1px solid var(--gr-divider); border-radius: 12px; padding: 6px 10px; white-space: nowrap; }
+.gr-gest-cam .gr-dot.running { background: var(--gr-rescue); } .gr-gest-cam .gr-dot.mouse { background: var(--gr-sun-300); }
+.gr-gest-cam .gr-dot.loading, .gr-gest-cam .gr-dot.camera { background: var(--gr-wind); }
+.gr-gest-cam .gr-dot.no-camera, .gr-gest-cam .gr-dot.no-model { background: var(--gr-danger); } .gr-gest-cam .gr-dot.idle { background: var(--gr-fg-4); }
+.gr-gest-panel { position: absolute; z-index: 20; left: 20px; top: 84px; bottom: 20px; width: 360px; overflow: auto; scrollbar-width: none; display: flex; flex-direction: column; gap: 10px; background: rgba(11,26,46,0.94); border: 1px solid var(--gr-divider); border-radius: 14px; padding: 14px 16px; box-shadow: var(--gr-shadow-3); }
+.gr-gest-panel .gr-eyebrow { margin: 0; color: #fff; }
+.gr-gest-why { margin: 0; font-size: 13px; line-height: 1.5; color: var(--gr-fg-2); }
+.gr-gest-gl { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 5px; }
+.gr-gest-gl li { display: flex; flex-direction: column; font-size: 12px; color: var(--gr-fg-3); padding: 5px 8px; border-radius: 8px; background: rgba(255,255,255,0.03); }
+.gr-gest-gl b { color: #fff; font-size: 13px; }
+.gr-gest-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.gr-gest-list li { display: flex; flex-direction: column; gap: 1px; padding: 8px 10px; border-radius: 8px; background: rgba(255,255,255,0.04); border: 1px solid var(--gr-divider-soft); cursor: pointer; }
+.gr-gest-list li b { color: #fff; font-size: 13px; } .gr-gest-list li small { color: var(--gr-fg-3); font-size: 11.5px; }
+.gr-gest-list li.on { border-color: var(--gr-rescue); background: rgba(74,222,128,0.12); } .gr-gest-list li.warn { border-color: var(--gr-sun-300); }
+.gr-gest-big { font-family: var(--gr-font-display); font-size: 34px; color: #fff; line-height: 1.1; }
+.gr-gest-big small { font-size: 13px; color: var(--gr-fg-3); font-family: var(--gr-font-body); } .gr-gest-big small.ok { color: var(--gr-rescue); } .gr-gest-big small.bad { color: var(--gr-danger); }
+.gr-gest-bands { display: flex; gap: 4px; } .gr-gest-bands i { flex: 1; height: 10px; border-radius: 3px; background: rgba(255,255,255,0.1); }
+.gr-gest-bands i.on { background: var(--gr-sun-300); } .gr-gest-bands i.ref { outline: 1px solid var(--gr-rescue); }
+.gr-gest-live { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; margin: 0; font-size: 13px; }
+.gr-gest-live dt { color: var(--gr-fg-3); } .gr-gest-live dd { margin: 0; color: #fff; font-family: var(--gr-font-mono); } .gr-gest-live dd.ok { color: var(--gr-rescue); } .gr-gest-live dd.bad { color: var(--gr-danger); }
+.gr-gest-side { position: absolute; z-index: 20; right: 20px; top: 84px; width: 320px; max-height: calc(100% - 104px); overflow: auto; scrollbar-width: none; display: flex; flex-direction: column; gap: 10px; }
+.gr-gest-card { background: rgba(11,26,46,0.94); border: 1px solid var(--gr-divider); border-radius: 14px; padding: 12px 14px; box-shadow: var(--gr-shadow-3); display: flex; flex-direction: column; gap: 6px; }
+.gr-gest-card > b { color: #fff; font-size: 14px; } .gr-gest-card table { width: 100%; font-size: 12.5px; border-collapse: collapse; }
+.gr-gest-card td { padding: 3px 0; color: var(--gr-fg-2); } .gr-gest-card td:first-child { color: var(--gr-fg-3); width: 86px; } .gr-gest-card small { color: var(--gr-fg-3); font-size: 11px; }
+.gr-gest-row { display: grid; grid-template-columns: 10px 74px 1fr; gap: 8px; align-items: baseline; font-size: 12px; color: var(--gr-fg-2); }
+.gr-gest-row small { color: var(--gr-fg-3); text-transform: uppercase; letter-spacing: 0.05em; font-size: 10px; }
+.gr-home-gest { display: inline-flex; align-items: center; gap: 8px; font: inherit; font-size: 12.5px; color: var(--gr-fg-2); background: rgba(255,255,255,0.05); border: 1px solid var(--gr-divider-soft); border-radius: 9999px; padding: 5px 12px 5px 8px; cursor: pointer; }
+.gr-home-gest:hover { border-color: var(--gr-rescue); color: #fff; }
+@media (max-width: 1100px) { .gr-gest-side { display: none; } .gr-gest-head h1 { display: none; } }
+@media (max-width: 760px) { .gr-gest { height: auto; min-height: calc(100vh - 64px); } .gr-gest-panel { position: static; width: auto; margin: 90px 12px 12px; } .gr-gest-steps { display: none; } }

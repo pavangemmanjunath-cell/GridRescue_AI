@@ -1,0 +1,113 @@
+{
+  "id": "noh-enugu",
+  "brief": {
+    "number": 12,
+    "track": "Clean Energy Solutions",
+    "title": "Relocatable solar for a hospital on the move",
+    "focus_region": "Enugu, Nigeria",
+    "persona": "Dr. Chukwuemeka is an orthopaedic surgeon here. Grid power arrives for about six hours a day and drops without warning. When it fails mid-procedure, the theatre waits while staff start the diesel generator — and fuel now costs more than the hospital can afford.",
+    "persona_note": "Persona is illustrative, drawn from the brief.",
+    "framing": "An asset-mobility and financing problem as much as a power problem: solar and storage can run the theatres; the hard part is a system the hospital can move in five years, and a funder willing to pay for it.",
+    "constraints": [
+      "Surgical theatres must have uninterrupted power, including during switchover",
+      "Nothing permanently attached to the current buildings; the system must move to the new site in about five years",
+      "Federal asset rules: the hospital cannot dispose of solar assets tied to its current buildings",
+      "Little or no upfront capital from the hospital",
+      "Keep diesel as backup until the new system proves itself",
+      "Maintainable by the hospital's engineering team or a local provider"
+    ],
+    "deliverables": [
+      {"text": "Critical-load list and phased design that powers surgical theatres first", "tab": "loads"},
+      {"text": "Relocatable system design (ground-mounted or containerised) with a move plan for the new building", "tab": "move"},
+      {"text": "Ownership and financing model (lease or energy-as-a-service) that fits federal asset rules", "tab": "money"},
+      {"text": "Cost model comparing diesel, grid and solar over five and ten years", "tab": "years"},
+      {"text": "Funding pitch naming specific funders and the case for each", "tab": "money"}
+    ],
+    "starter_questions": [
+      "Which loads must never lose power, and which can wait for the grid?",
+      "How do you build a system that can move to a new building in five years?",
+      "Who should own the system so the hospital avoids asset-disposal problems?",
+      "Can diesel savings alone repay the system, and over how long?",
+      "Which funders have backed similar projects, and what do they require?"
+    ]
+  },
+  "hospital": {
+    "name": "National Orthopaedic Hospital, Enugu",
+    "short": "NOHE",
+    "address": "Abakpa Junction, Abakaliki Road, Enugu",
+    "postal": "P.M.B. 01294, Enugu, Enugu State, Nigeria",
+    "lat": 6.4684,
+    "lng": 7.5256,
+    "coords_source": "OpenStreetMap",
+    "beds": 350,
+    "beds_source": "hospital profile",
+    "connected_kw": 1550,
+    "grid_hours_per_day": 6,
+    "grid_source": "hospital's head engineer (brief ref 1)",
+    "disco": "MainPower Electricity Distribution (Enugu State market, regulated by EERC)",
+    "services": ["Trauma and orthopaedics", "Burns", "Plastic surgery"],
+    "move_in_years": 5
+  },
+  "new_site": {
+    "lat": 6.4720,
+    "lng": 7.6050,
+    "label": "New building site (illustrative pin, Enugu East)",
+    "illustrative": true,
+    "note": "The brief lists the new building site as partner data. Drag or click the map to place the hospital's real plot; the scan and the move plan update."
+  },
+  "facility": {
+    "type": "hospital_tertiary",
+    "name": "National Orthopaedic Hospital, Enugu",
+    "beds": 350,
+    "avg_load_kw": null,
+    "critical_load_kw": null,
+    "daily_kwh": null,
+    "backup_hours": 12,
+    "existing": {"grid_connection": true, "generator_kva": 1000, "solar_kwp": 0, "ups_kva": 0},
+    "roof_area_m2": 0,
+    "land_area_m2": 20000,
+    "water_source": "borehole",
+    "budget_usd": null,
+    "priority": "most_reliable",
+    "allow_new_generator": true
+  },
+  "options": {
+    "supply_hours_override": 6,
+    "outage_start_hour": 18,
+    "month": 7,
+    "diesel_price_usd_per_l": 2.464,
+    "grid_tariff_usd_per_kwh": 0.1203,
+    "usd_to_ngn": 1330,
+    "relocation": {
+      "move_year": 5,
+      "horizon_years": 10,
+      "theatre_suites": 4,
+      "theatre_hours_per_day": 10,
+      "theatre_days_per_week": 6,
+      "reported_diesel_ngn_per_month": null
+    }
+  },
+  "prices": [
+    {"label": "Diesel", "value": "₦3,277 / L", "source": "NBS national average, May 2026 — up 86 % in a year (brief ref 4)"},
+    {"label": "Grid tariff", "value": "₦160 / kWh", "source": "EERC Band A tariff for Enugu (brief ref 5)"},
+    {"label": "Exchange rate", "value": "₦1,330 / US$", "source": "CBN official window (engine default)"}
+  ],
+  "inputs_to_confirm": [
+    {"label": "Roof area used", "value": "0 m²", "why": "nothing may be fixed to today's buildings"},
+    {"label": "Free land for ground-mounted solar", "value": "20,000 m²", "why": "assumed — confirm on the campus site plan"},
+    {"label": "Existing diesel generators", "value": "1,000 kVA", "why": "assumed — confirm from the generator logs"},
+    {"label": "Design month", "value": "August", "why": "the cloudiest month in Enugu (NASA POWER), so the sizing holds all year"},
+    {"label": "Diesel bill today", "value": "not yet supplied", "why": "enter it from the hospital's fuel records to see the payback on real spend"},
+    {"label": "New building site", "value": "illustrative pin", "why": "replace with the hospital's real plot"}
+  ],
+  "references": [
+    {"id": 1, "title": "National Orthopaedic Hospital Enugu, head engineer — problem statement shared with the Global Energy Hackathon organisers"},
+    {"id": 2, "title": "Gazette Nigeria — FG inaugurates 1.5 MW solar hybrid grid at Dala Orthopedic Hospital", "url": "https://gazettengr.com/fg-inaugurates-1-5mw-solar-hybrid-grid-at-dala-orthopedic-hospital/"},
+    {"id": 3, "title": "AllAfrica — Electricity tariff: life-saving services threatened in teaching hospitals", "url": "https://allafrica.com/stories/202406100036.html"},
+    {"id": 4, "title": "Legit.ng — NBS: diesel price rises 86.40 % to ₦3,277/litre", "url": "https://www.legit.ng/business-economy/energy/1716140-nbs-diesel-price-rises-8640-n3277litre-2026/"},
+    {"id": 5, "title": "Nairametrics — Enugu cuts Band A tariff to ₦160/kWh", "url": "https://nairametrics.com/2025/07/21/enugu-slashes-electricity-tariff-for-band-a-customers-to-n160-kwh-effective-august-1/"},
+    {"id": 7, "title": "BusinessDay — Nigeria to electrify 3,700 healthcare centres with renewables", "url": "https://businessday.ng/energy/power/article/nigeria-to-electrify-3700-healthcare-centres-with-renewables/"},
+    {"id": 8, "title": "Africa Renewable Energy — Nduta Main Hospital solar system, Tanzania (containerised storage)", "url": "https://renewelec.org/case-study/nduta-main-hospital-solar-system/"},
+    {"id": 10, "title": "ThisDay — EU, Enugu Govt to spend ₦4.3 bn on solar energy in healthcare centres", "url": "https://www.thisdaylive.com/2024/11/20/eu-enugu-govt-to-spend-n4-3bn-on-solar-energy-in-healthcare-centres/"}
+  ]
+}

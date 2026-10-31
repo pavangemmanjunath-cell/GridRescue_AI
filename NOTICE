@@ -1,0 +1,28 @@
+GridRescue AI
+Copyright 2026 Pavan Manjunath and Thomas Prüfer
+
+The source code in this repository is licensed under the Apache License, Version 2.0 (see LICENSE).
+
+This repository also contains or uses third-party material under its own terms:
+
+1. OpenStreetMap data
+   backend/app/data/osm_ng.json is an extract of OpenStreetMap data (substations, power lines, plants,
+   health facilities, rivers, lakes and boundaries for Nigeria, via the Geofabrik Nigeria extract).
+   © OpenStreetMap contributors. This file is made available under the Open Database License (ODbL) 1.0,
+   https://opendatacommons.org/licenses/odbl/1-0/ — not under the Apache License.
+   See https://www.openstreetmap.org/copyright.
+   The map views and the 3D ground map load tiles from tile.openstreetmap.org (© OpenStreetMap contributors),
+   subject to the OSM Foundation tile usage policy, https://operations.osmfoundation.org/policies/tiles/.
+
+2. Solar-panel texture
+   frontend/public/textures/pv_module.jpg is a cropped NASA photograph (KSC-20210527-PH-FMX01_0077,
+   Discovery Solar Energy Center) from Wikimedia Commons, in the public domain as a work of NASA.
+
+3. Open data services used at run time (not redistributed here, except where cached on the user's machine)
+   NASA POWER, PVGIS (European Commission JRC), NLR PVWatts, Global Solar Atlas, Open-Meteo (ERA5, GloFAS,
+   elevation, geocoding; data under CC BY 4.0), OpenStreetMap Overpass and Nominatim, World Bank Indicators
+   and ENERGYDATA.INFO. Each service's own terms of use apply; attribution is given in the app and in README.md.
+
+4. Software dependencies
+   Installed by pip and npm, not vendored. Their licences are listed in docs/reproducibility.md (Dependencies);
+   note that react-leaflet is published under the Hippocratic License 2.1.

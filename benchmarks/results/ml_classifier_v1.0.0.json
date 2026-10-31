@@ -1,0 +1,59 @@
+{
+ "benchmark": "backup-architecture classifier, held-out agreement with the GridRescue engine",
+ "software_version": "1.0.0",
+ "command": "cd backend && python -m app.ml.train_backup_classifier --out <file>",
+ "data": "10,000 synthetic sites labelled by the engine (seed 2026); first 8,000 train, last 2,000 test",
+ "environment": {
+  "os": "Windows 11",
+  "python": "3.13.5",
+  "cpu": "13th Gen Intel(R) Core(TM) i7-1355U"
+ },
+ "reproduced_model_sha256": "7243d7cb15fb6ecfd4dd07e7234f80c7294c9d3a5f220fcebf2687b37c34d554",
+ "matches_shipped_model": true,
+ "results": {
+  "engine_version": "1.0.0",
+  "seed": 2026,
+  "n_train": 8000,
+  "n_test": 2000,
+  "algorithm": "Random Forest (bagged CART trees, √features per split) + CART tree as explanation",
+  "n_features": 21,
+  "infrastructure_types": [
+   "hospital_general",
+   "hospital_tertiary",
+   "clinic_phc",
+   "emergency_center",
+   "telecom_tower",
+   "data_center",
+   "cold_chain",
+   "water_treatment",
+   "school",
+   "custom"
+  ],
+  "accuracy_train": 0.865,
+  "accuracy_test": 0.804,
+  "top2_accuracy_test": 0.945,
+  "cart_accuracy_test": 0.769,
+  "majority_baseline_test": 0.465,
+  "recall_test": {
+   "gen_backup": 0.724,
+   "solar_wind_backup": 0.552,
+   "solar_backup": 0.895,
+   "solar_backup_gen": 0.809,
+   "grid_backup": 0.579,
+   "wind_backup": 0.0,
+   "solar_flow": 0.0
+  },
+  "priority": "balanced",
+  "label_distribution": {
+   "solar_backup": 4541,
+   "solar_backup_gen": 2785,
+   "gen_backup": 1604,
+   "grid_backup": 594,
+   "solar_wind_backup": 338,
+   "solar_flow": 70,
+   "wind_backup": 54,
+   "hydrogen": 14
+  },
+  "labels_from": "GridRescue AI engine (sizing + 24-h dispatch + 9-criterion scoring)"
+ }
+}
