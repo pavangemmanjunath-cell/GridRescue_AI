@@ -2,12 +2,14 @@
 REM GridRescue AI - one-click start (Windows). Backend on http://127.0.0.1:8000, app on http://localhost:5173.
 REM Offline demo (no internet APIs): run   set GR_OFFLINE=1   before START.bat
 REM Start without opening the browser: set GR_NO_BROWSER=1   (used by the automated start test)
+REM Use another port for the app if 5173 is taken: set GR_UI_PORT=5180
 setlocal
 cd /d "%~dp0"
+if not defined GR_UI_PORT set GR_UI_PORT=5173
 title GridRescue AI - start
 
 REM Already running? Then just open it.
-curl -s -o nul http://127.0.0.1:8000/health && curl -s -o nul http://127.0.0.1:5173/ && (
+curl -s -o nul http://127.0.0.1:8000/health && curl -s -o nul http://127.0.0.1:%GR_UI_PORT%/ && (
   echo GridRescue AI is already running.
   goto open
 )
@@ -51,13 +53,13 @@ if not exist frontend\public\models\gesture_recognizer.task (
 
 echo [4/5] Starting the backend and the app in two windows...
 start "GridRescue API" cmd /k "cd /d "%~dp0backend" && .venv\Scripts\python -m uvicorn app.main:app --host 127.0.0.1 --port 8000"
-start "GridRescue UI" cmd /k "cd /d "%~dp0frontend" && npm run dev"
+start "GridRescue UI" cmd /k "cd /d "%~dp0frontend" && npm run dev -- --port %GR_UI_PORT% --strictPort"
 
 echo [5/5] Waiting for both servers...
 set /a tries=0
 :wait
 set /a tries+=1
-curl -s -o nul http://127.0.0.1:8000/health && curl -s -o nul http://127.0.0.1:5173/ && goto open
+curl -s -o nul http://127.0.0.1:8000/health && curl -s -o nul http://127.0.0.1:%GR_UI_PORT%/ && goto open
 if %tries% geq 90 (
   echo     The servers did not answer within 3 minutes - see the "GridRescue API" and "GridRescue UI" windows.
   goto fail
@@ -66,12 +68,12 @@ ping -n 3 127.0.0.1 >nul
 goto wait
 
 :open
-if not defined GR_NO_BROWSER start "" http://localhost:5173
+if not defined GR_NO_BROWSER start "" http://localhost:%GR_UI_PORT%
 echo.
 echo GridRescue AI is running.
-echo App:        http://localhost:5173
+echo App:        http://localhost:%GR_UI_PORT%
 echo API docs:   http://localhost:8000/docs
-echo Hands-free: http://localhost:5173/hands  ^(allow the webcam when asked^)
+echo Hands-free: http://localhost:%GR_UI_PORT%/hands  ^(allow the webcam when asked^)
 echo Close the "GridRescue API" and "GridRescue UI" windows to stop.
 endlocal
 exit /b 0
