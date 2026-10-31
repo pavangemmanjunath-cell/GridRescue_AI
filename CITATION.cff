@@ -1,0 +1,38 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it using the metadata below."
+title: "GridRescue AI: open-data planning and hourly outage simulation for relocatable clean backup power at critical facilities"
+type: software
+authors:
+  - family-names: "Manjunath"
+    given-names: "Pavan"
+    orcid: "https://orcid.org/0000-0002-2694-8807"
+  - family-names: "Prüfer"
+    given-names: "Thomas"
+version: "1.0.0"
+date-released: "2026-10-31"
+repository-code: "https://github.com/pavangemmanjunath-cell/GridRescue_AI"
+license: Apache-2.0
+abstract: >-
+  GridRescue AI is a web application and Python engine that plans clean backup power for hospitals and
+  other critical facilities on weak grids. From a map pin it reads the site from open data (solar, wind,
+  water, the nearby grid and the published tariff), sizes nine candidate architectures (UPS, battery
+  storage, solar, wind, flow, hydrogen, pumped hydro and generator hybrids), checks each with an hourly
+  dispatch simulation through outage cases and four stress tests, ranks them on nine weighted criteria,
+  and reports costs, a relocation plan for a facility that must move, and a Scope 1 and Scope 2 ESG
+  estimate. A Random Forest trained on engine-labelled synthetic sites gives a first pick that the
+  simulation verifies, and a SQLite full-text index answers questions with cited passages. The worked
+  example is the National Orthopaedic Hospital, Enugu (Global Energy Hackathon 2026, Brief 12). Results
+  are pre-feasibility estimates (about ±30 %).
+keywords:
+  - energy resilience
+  - critical infrastructure
+  - hospital energy
+  - solar photovoltaics
+  - battery energy storage
+  - microgrid planning
+  - power outage simulation
+  - relocatable energy systems
+  - ESG reporting
+  - open data
+  - random forest
+  - research software

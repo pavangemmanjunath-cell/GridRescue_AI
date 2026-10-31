@@ -1,0 +1,41 @@
+name: Research question
+description: Ask about the method, the assumptions, the ML model or reproducing a result.
+labels: ["research"]
+body:
+  - type: textarea
+    id: question
+    attributes:
+      label: Research question
+    validations:
+      required: true
+  - type: dropdown
+    id: component
+    attributes:
+      label: Relevant component
+      options:
+        - Sizing
+        - Hourly simulation and stress tests
+        - Costs and investment case
+        - Relocation case
+        - ESG and emissions
+        - ML classifier
+        - Ask GridRescue (retrieval)
+        - Open data and snapshots
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: hypothesis
+    attributes:
+      label: Hypothesis
+      description: What do you expect, and why?
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Experiment or reproduction information
+      description: Commands, version, inputs and the results you got.
+  - type: textarea
+    id: references
+    attributes:
+      label: References
+      description: Papers, datasets or tools, if relevant.
