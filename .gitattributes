@@ -1,0 +1,12 @@
+# Normalise line endings: Windows batch files keep CRLF, shell scripts LF, everything else is stored as LF.
+* text=auto
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.sh  text eol=lf
+*.mp4  binary
+*.pdf  binary
+*.pptx binary
+*.docx binary
+*.jpg  binary
+*.png  binary
+*.task binary

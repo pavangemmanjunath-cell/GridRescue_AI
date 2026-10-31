@@ -1,0 +1,35 @@
+{
+  "_about": "Grid electricity prices the app shows in the Explorer lens and uses to compare sites. Only published figures, each with its source; where a regulator publishes a time-of-use structure but the rate table could not be read, the structure is given and the rate is left for the user's bill. No night discount exists in Nigeria.",
+  "countries": {
+    "NG": {
+      "name": "Nigeria", "currency": "NGN", "symbol": "₦", "tou": false,
+      "rate_per_kwh": 209.5, "label": "NERC Band A (≥ 20 h a day)",
+      "source": "NERC Multi-Year Tariff Order — Band A ₦209.50/kWh (Daily Trust, NERC order)",
+      "night_note": "Flat tariff: the price is the same at night. Night charging in Nigeria is about when the feeder is live, not about price.",
+      "states": {
+        "Enugu": { "rate_per_kwh": 160, "label": "EERC Band A (Enugu State market)", "source": "Enugu State Electricity Regulatory Commission order EERC/2025/003 — Band A ₦160/kWh (Nairametrics, Enugu State Government)" }
+      },
+      "bands": [{ "band": "A", "hours": "≥ 20 h", "rate": 209.5 }, { "band": "B", "hours": "16–20 h", "rate": 68.96, "note": "allowed (subsidised) tariff" }, { "band": "C", "hours": "12–16 h", "rate": 56.38, "note": "allowed (subsidised) tariff" }]
+    },
+    "KE": {
+      "name": "Kenya", "currency": "KES", "symbol": "KSh", "tou": true,
+      "rate_per_kwh": null, "label": "Kenya Power CI1 — energy charge from your bill",
+      "source": "EPRA time-of-use rule: 50 % discount on the energy charge in off-peak hours (Kenyans.co.ke / EPRA); the 2018 KPLC schedule listed CI1 at KSh 12.00 and KSh 6.00 off-peak — confirm the current rate on the bill",
+      "tou_rule": { "off_peak": [[22, 6]], "discount_pct": 50, "text": "Off-peak 22:00–06:00 on weekdays, 14:00–08:00 Saturdays, all day Sundays and public holidays: 50 % off the energy charge" },
+      "night_note": "Night is cheaper: a 50 % discount on the energy charge in the off-peak hours — charging batteries overnight makes financial sense here."
+    },
+    "ZA": {
+      "name": "South Africa", "currency": "ZAR", "symbol": "R", "tou": true,
+      "rate_per_kwh": null, "label": "Eskom Megaflex — rate from your bill",
+      "source": "Eskom Schedule of Standard Prices (Megaflex: seasonal and time-of-use energy charges; peak-to-off-peak ratio reduced to 6:1; evening peak 3 h, morning peak 2 h)",
+      "tou_rule": { "off_peak": [[22, 6]], "peak": [[7, 9], [17, 20]], "text": "Three periods: peak (morning 2 h, evening 3 h), standard, off-peak overnight; peak costs about six times off-peak" },
+      "night_note": "Night is much cheaper (off-peak): peak is about six times the off-peak energy charge, so overnight charging is the normal strategy."
+    },
+    "GH": {
+      "name": "Ghana", "currency": "GHS", "symbol": "GH₵", "tou": false,
+      "rate_per_kwh": 2.1649, "label": "PURC non-residential, 301+ kWh",
+      "source": "PURC tariff order effective 1 April 2026 — non-residential 301+ kWh 216.49 pesewas/kWh (GNA, AllAfrica)",
+      "night_note": "Flat tariff: no night discount."
+    }
+  }
+}

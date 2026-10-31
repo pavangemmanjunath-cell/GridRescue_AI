@@ -1,0 +1,94 @@
+# Runs on every push and pull request:
+#  - backend: the pytest suite (offline, from bundled snapshots) on Python 3.11–3.13, and the quick-start example;
+#  - frontend: lint, type-check, unit tests and the production build;
+#  - citation: CITATION.cff is valid;
+#  - start script: ./start.sh starts both servers on Linux and the app answers through the dev proxy.
+# The Playwright GUI suite needs a browser and both servers, so it runs locally (see README › Tests).
+name: CI
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
+    defaults:
+      run:
+        working-directory: backend
+    env:
+      GR_OFFLINE: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+          cache-dependency-path: backend/requirements*.txt
+      - run: pip install -r requirements-dev.txt
+      - run: python -m pytest -q
+      - name: Quick-start example (offline)
+        run: python ../examples/quickstart.py --offline
+
+  frontend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - run: npm ci
+      - run: npm run lint
+      - run: npx tsc -b
+      - run: npx vitest run
+      - run: npx vite build
+
+  citation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install cffconvert
+      - run: cffconvert --validate
+
+  start-script:
+    runs-on: ubuntu-latest
+    env:
+      GR_OFFLINE: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Start the app with start.sh and check that it answers
+        run: |
+          bash start.sh > start.log 2>&1 &
+          for i in $(seq 1 120); do
+            if curl -sf http://127.0.0.1:8000/health > /dev/null && curl -sf http://localhost:5173/ > /dev/null; then
+              echo "both servers up after about $((i * 2)) s"; break
+            fi
+            sleep 2
+          done
+          curl -sf http://127.0.0.1:8000/health
+          curl -sf http://localhost:5173/ | grep -q 'id="root"'
+          curl -sf http://localhost:5173/api/technologies | grep -q '"technologies"'
+          echo "frontend, backend and the /api proxy answer"
+      - name: Start log
+        if: always()
+        run: tail -n 40 start.log || true

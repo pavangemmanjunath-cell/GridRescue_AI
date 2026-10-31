@@ -1,0 +1,79 @@
+/* ============================================================
+   GridRescue AI — Design tokens
+   Instrument-grade dark UI: deep navy chrome, sun gold, wind cyan,
+   water blue, grid coral, rescue green. 4-px spacing ladder.
+   ============================================================ */
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap");
+
+:root {
+  /* Surfaces */
+  --gr-bg-deep: #08111F;
+  --gr-bg: #0B1A2E;
+  --gr-surface-1: #122541;
+  --gr-surface-2: #1A3052;
+  --gr-surface-3: #244065;
+  --gr-divider: #1F3556;
+  --gr-divider-soft: rgba(255, 255, 255, 0.06);
+
+  /* Foreground */
+  --gr-fg: #F3F6FB;
+  --gr-fg-2: #B8C4D9;
+  --gr-fg-3: #7A8AA8;
+  --gr-fg-4: #4D5E7E;
+
+  /* Brand + semantic resource colours */
+  --gr-sun-100: #FBE9C3;
+  --gr-sun-300: #F0CB72;
+  --gr-sun-500: #D4A056;
+  --gr-sun-600: #B8853D;
+  --gr-sun-trace: #FF9A3C;
+  --gr-wind: #22B7E8;
+  --gr-wind-light: #5BD4FF;
+  --gr-water: #3A86E6;
+  --gr-water-light: #7FB2FF;
+  --gr-grid: #FF6B6B;
+  --gr-rescue: #4ADE80;
+  --gr-hydrogen: #8B8BFF;
+  --gr-critical: #EF4444;
+
+  /* Chart semantics */
+  --gr-chart-load: #B8C4D9;
+  --gr-chart-critical: #EF6B5C;
+  --gr-chart-pv: #F0CB72;
+  --gr-chart-wind: #22B7E8;
+  --gr-chart-backup: #4ADE80;
+  --gr-chart-grid: #5B8DEF;
+  --gr-chart-generator: #FF6B6B;
+  --gr-chart-unserved: #FF3B3B;
+
+  /* Status */
+  --gr-success: #4ADE80;
+  --gr-warning: #F0CB72;
+  --gr-danger: #EF6B5C;
+  --gr-info: #5B8DEF;
+
+  /* Map */
+  --gr-map-shadow: rgba(8, 17, 31, 0.55);
+
+  /* Type */
+  --gr-font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --gr-font-body: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --gr-font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --gr-fs-xs: 11px; --gr-fs-sm: 13px; --gr-fs-md: 15px; --gr-fs-lg: 18px; --gr-fs-xl: 22px;
+  --gr-fs-2xl: 28px; --gr-fs-3xl: 36px; --gr-fs-4xl: 48px; --gr-fs-5xl: 64px;
+  --gr-tracking-caps: 0.08em;
+
+  /* Spacing / radius / shadow */
+  --gr-s1: 4px; --gr-s2: 8px; --gr-s3: 12px; --gr-s4: 16px; --gr-s5: 20px; --gr-s6: 24px; --gr-s8: 32px; --gr-s10: 40px; --gr-s12: 48px;
+  --gr-r-xs: 4px; --gr-r-sm: 6px; --gr-r-md: 10px; --gr-r-lg: 14px; --gr-r-full: 9999px;
+  --gr-shadow-1: 0 1px 2px rgba(8, 17, 31, 0.4);
+  --gr-shadow-2: 0 4px 10px rgba(8, 17, 31, 0.45), 0 1px 2px rgba(8, 17, 31, 0.5);
+  --gr-shadow-3: 0 12px 28px rgba(8, 17, 31, 0.55), 0 2px 4px rgba(8, 17, 31, 0.5);
+  --gr-glow: 0 0 0 4px rgba(255, 154, 60, 0.25);
+  --gr-focus: 0 0 0 2px var(--gr-bg), 0 0 0 4px var(--gr-sun-500);
+
+  /* Motion */
+  --gr-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --gr-ease-inout: cubic-bezier(0.65, 0, 0.35, 1);
+  --gr-dur-fast: 140ms; --gr-dur-base: 220ms; --gr-dur-slow: 420ms; --gr-dur-lens: 900ms;
+}

@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+backend/.cache/
+backend/.cache-test/
+backend/.cache-offline/
+backend/.pytest_cache/
+.env
+.env.*
+
+# Node
+frontend/node_modules/
+frontend/dist/
+frontend/node_modules/.tmp/
+*.tsbuildinfo
+
+# Test output (Playwright screenshots, traces, reports) — never committed
+frontend/e2e-results/
+frontend/test-results/
+frontend/playwright-report/
+frontend/blob-report/
+docs/screenshots/
+
+# Reproduction outputs (large; the reference results are committed in benchmarks/results/)
+benchmarks/results/*_repro.json
+
+# Generated at install / start (npm postinstall and START.bat recreate them)
+frontend/public/mediapipe/
+frontend/public/models/*.task
+
+# Logs and editor / OS files
+*.log
+npm-debug.log*
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+~$*
