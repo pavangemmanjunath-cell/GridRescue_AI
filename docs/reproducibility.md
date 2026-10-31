@@ -137,7 +137,7 @@ cd frontend && npm run e2e                 # GUI tests; start both servers first
 | The app shows "API offline" | Start the backend on port 8000, or run `START.bat` |
 | Open-data calls time out | Set `GR_OFFLINE=1` |
 | 3D pages are slow | Use a browser with hardware acceleration enabled |
-| Port 8000 or 5173 is in use | Close the other instance; `START.bat` detects a running copy and opens it |
+| Port 8000 or 5173 is in use | Close the other instance; `START.bat` detects a running GridRescue and opens it. To use another app port: `set GR_UI_PORT=5180` (Windows) or `GR_UI_PORT=5180 ./start.sh` |
 
 ## Known Sources of Non-Determinism
 

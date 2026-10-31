@@ -294,7 +294,7 @@ Formulas, parameters, assumptions and threats to validity: [docs/methodology.md]
 
 Prerequisites: **Python 3.11–3.13** and **Node.js 22.12 or newer** (the dev server alone runs on Node 20.19+). No API keys.
 
-**Windows, one click.** Double-click `START.bat`. It checks Python and Node.js, installs the backend and frontend packages on the first run, starts the API and the app in two windows, waits until both answer and opens http://localhost:5173. If the app is already running it just opens it. Close the two server windows to stop.
+**Windows, one click.** Double-click `START.bat`. It checks Python and Node.js, installs the backend and frontend packages on the first run, starts the API and the app in two windows, waits until both answer and opens http://localhost:5173. If the app is already running it just opens it. Close the two server windows to stop. If port 5173 is taken by something else, run `set GR_UI_PORT=5180` first.
 
 **Linux / macOS.**
 
