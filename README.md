@@ -23,25 +23,25 @@ Global Energy Hackathon 2026 · Clean Energy Solutions · Brief 12 “Relocatabl
 
 | Theatres and ICU | Diesel avoided | CO₂ avoided | Upfront and fee | 10-year cost | After the move |
 |:---:|:---:|:---:|:---:|:---:|:---:|
-| **303 kW on a 0 ms UPS**<br/>4 of 4 stress tests · survives any outage start, up to 24 h | **866,678 L**<br/>a year (83 %) | **2,246 t**<br/>a year, net | **₦0 upfront**<br/>fee ₦69.1 M a month vs ₦299 M of diesel | **₦15.9 bn**<br/>vs ₦37.6 bn staying on diesel | **88 % reused**<br/>move ₦678 M vs ₦1,510 M stranded on a roof |
+| **303 kW on an online UPS**<br/>0 ms switchover (modelled) · 4 of 4 stress tests · survives any outage start, up to 24 h | **866,678 L**<br/>a year (83 %) | **2,246 t**<br/>a year, net | **₦0 upfront**<br/>fee ₦69.1 M a month vs ₦299 M of diesel | **₦15.9 bn**<br/>vs ₦37.6 bn staying on diesel | **88 % reused**<br/>move ₦678 M vs ₦1,510 M stranded on a roof |
 
-<sub>Engine results for the worked example — 1,670 kWp ground-mounted solar · 5,020 kWh in 3 movable battery containers · 500 kVA UPS · the existing generator last — from live open data and the hospital's reported 6 h of grid a day (reproduce with `python examples/quickstart.py`). The diesel bill is modelled; the service saves money from month one whenever the real bill is above ₦117.9 M a month (the hospital's records are partner data still to come). CO₂ net = 2,323 t of diesel no longer burnt − 77 t of extra grid power bought to charge the batteries.</sub>
+<sub>Engine results for the worked example — 1,670 kWp ground-mounted solar · a 5,020 kWh containerised energy system in 3 movable energy containers · 500 kVA UPS · the existing generator last — from live open data and the hospital's reported 6 h of grid a day (reproduce with `python examples/quickstart.py`). The diesel bill is modelled; the service saves money from month one whenever the real bill is above ₦117.9 M a month (the hospital's records are partner data still to come). CO₂ net = 2,323 t of diesel no longer burnt − 77 t of extra grid power bought to charge the energy system.</sub>
 
 ### Brief 12 — every deliverable, and where to see it
 
 | The brief asks for | In the app | Tested in |
 |---|---|---|
-| Critical-load list, theatres powered first | Plan › Theatres first (303 kW critical, phases) · Simulate (UPS 0 ms) | `enugu.spec.ts` |
-| Relocatable design with a move plan | Plan › Movable storage, Move plan (4 km, 3 weeks, 88 % reused) · new-site lens | `enugu.spec.ts`, `location-sim.spec.ts` |
+| Critical-load list, theatres powered first | Plan › Theatres first (303 kW critical, phases) · Simulate (online UPS, 0 ms switchover, modelled) | `enugu.spec.ts` |
+| Relocatable design with a move plan | Plan › Movable energy system, Move plan (4 km, 3 weeks, 88 % reused) · new-site lens | `enugu.spec.ts`, `location-sim.spec.ts` |
 | Ownership and financing that fit federal asset rules | Plan › Money (energy-as-a-service, nothing on the asset register) | `enugu.spec.ts` |
 | Diesel vs grid vs solar over 5 and 10 years | Plan › Money (₦18.8 / 3.5 / 7.9 bn at 5 yr; ₦37.6 / 7.0 / 15.9 bn at 10 yr) | `enugu.spec.ts`, `qa.spec.ts` |
 | Funders named, with the case for each | Plan › Money (REA public-sector solarisation, EU–Enugu Solar for Health, development banks, an ESCO) | `enugu.spec.ts` |
-| Uninterrupted theatres incl. switchover; diesel kept until proven | UPS 0 ms; 4 stress tests; outage survival at every start hour; generator last | `app.spec.ts`, `qa.spec.ts` |
+| Uninterrupted theatres incl. switchover; diesel kept until proven | Online UPS (0 ms switchover, modelled); 4 stress tests; outage survival at every start hour; generator last | `app.spec.ts`, `qa.spec.ts` |
 
 ---
 
 ## Contents
-1. [Overview](#overview) · [Proposition](#proposition) · [Research problem and motivation](#research-problem-and-motivation) · [Key contributions](#key-contributions) · [How this work differs](#how-this-work-differs)
+1. [Overview](#overview) · [What was built for the hackathon](#what-was-built-for-the-hackathon) · [Worked example: inputs and assumptions](#worked-example-inputs-and-assumptions) · [Proposition](#proposition) · [Research problem and motivation](#research-problem-and-motivation) · [Key contributions](#key-contributions) · [How this work differs](#how-this-work-differs)
 2. [The journey in the app](#the-journey-in-the-app) · [Simulation types](#simulation-types) · [ESG report for any site](#esg-report-for-any-site)
 3. [System architecture](#system-architecture) · [Data flow](#data-flow) · [Methodology](#methodology)
 4. [Installation and quick start](#installation-and-quick-start) · [Usage](#usage) · [Dataset](#dataset) · [Reproducing the research](#reproducing-the-research) · [Benchmarks](#benchmarks) · [Tests](#tests)
@@ -60,8 +60,8 @@ Global Energy Hackathon 2026 · Clean Energy Solutions · Brief 12 “Relocatabl
 | | What it means | What GridRescue AI does |
 |---|---|---|
 | **Access** | Reliable power where the grid fails | Reads any site in seconds from open data; the new-site lens ranks where the next building should go by grid access |
-| **Affordability** | Clean power within reach | Compares every storage family on cost for *this* site; energy-as-a-service with no upfront capital, paid from today's diesel budget |
-| **Availability** | Never dark, anytime | A 0 ms UPS on the theatres, storage through the night, diesel last; four outage stress tests must all pass; the system moves with the hospital |
+| **Affordability** | Clean power within reach | Compares every energy-system family on cost for *this* site; energy-as-a-service with no upfront capital, paid from today's diesel budget |
+| **Availability** | Never dark, anytime | An online UPS on the theatres (0 ms switchover, modelled), the energy system through the night, diesel last; four outage stress tests must all pass; the system moves with the hospital |
 
 **Who it helps.** Hospital boards and engineers (what to buy, why, what it costs, how it moves), funders (bankable numbers, ESG forecast before purchase), utilities (where feeders are weak, grid-first options), and installers of any brand — the planner is **vendor-neutral** and sells no hardware.
 
@@ -69,9 +69,71 @@ Global Energy Hackathon 2026 · Clean Energy Solutions · Brief 12 “Relocatabl
 
 ---
 
+## What was built for the hackathon
+
+Four modules were built during the Global Energy Hackathon 2026, as one workflow: site read → outage simulation → vendor-neutral design → cost and payback → ESG report.
+
+| Module | What it does | Where |
+|---|---|---|
+| **1 Grid mapper** | Sun, wind, water and grid lenses from open data; substations within 50 and 100 km; published supply hours and tariff; the "hospital is moving" new-site lens ranks areas within 12 km on grid access and distance | Explorer |
+| **2 Relocation plan** | The brief's five starter questions answered on one screen: two sites, theatres-first load list, movable energy system, energy type, no-sun case, move plan, money (5- and 10-year cost model, ownership, funders), impact, data sources | Plan |
+| **3 3D hour-by-hour outage simulation and ML** | Four stress tests and the outage-survival curve on the hospital's own site; a Random Forest (30 trees, 80.4 % agreement with the engine on held-out synthetic sites) classifies the energy system, and the hourly simulation verifies every pick | Simulate · Advisor |
+| **4 ESG report** | Scope 1 / Scope 2, E · S · G lines, carbon value at the buyer's price only after verification; a self-contained report for the selected site | Plan › Impact · Simulate · Report |
+
+Also built in the sprint: offline mode, one-click start (`START.bat` / `start.sh`), tests and CI, and the research-repository files (CITATION.cff, model card, data card).
+
+**Pre-existing base — TO CONFIRM.** The GridRescue AI web-application frame and the 3D scene kit existed before the sprint; the exact boundary is to be confirmed with the authors before the disclosure statement in [`FINAL_DOC/5_Addtional_DOC/`](FINAL_DOC/5_Addtional_DOC/) is published. AI tools used: an AI coding assistant for code, documents and the video pipeline (wording to be confirmed). All code is Apache-2.0; OpenStreetMap data is ODbL.
+
+**What is unique (checked against the tools judges know).** REopt (NREL, free) sizes PV, an energy system and a generator so a site survives a specified outage; US-based with guidance for international sites; built for energy experts. HOMER Pro (UL Solutions, commercial): annual microgrid simulation and least-cost design; priced for consultants, steep learning curve. The HOMER Powering Health Tool (World Bank/ESMAP, free): least-cost solar + energy-system + diesel combinations for clinics and hospitals — a sizing and cost tool, not an outage-by-outage simulation; no relocation, no grid mapping, no ESG report. Odyssey Energy Solutions: project planning, financing, procurement and monitoring for developers. MapYourGrid / OpenStreetMap community: grid infrastructure mapping (our data partner, not a competitor). What none of them does in one flow, and GridRescue AI does today:
+
+1. From a map pin to an investment-ready hospital plan in minutes, on open data, with no API keys and no expert.
+2. The grid mapper with the "hospital is moving" new-site lens: substations and lines within 50 and 100 km, published supply hours, areas ranked for the new building — then a relocation plan with a move cost and a reuse percentage.
+3. Every energy-system family simulated hour by hour on the site's own sun, grid hours and load, four stress tests, with a vendor-neutral ML classification of the energy system that the simulation verifies.
+4. Local market assumptions built in: the NBS diesel price, the state tariff, Nigerian funders and programmes.
+5. The ESG report (Scope 1 and Scope 2, E·S·G lines) and the before → after KPIs written before anything is bought.
+
+We do not claim that the simulation itself is new; the claim is the integrated, hospital-specific, relocatable, financeable workflow.
+
+---
+
+## Worked example: inputs and assumptions
+
+Every figure for the National Orthopaedic Hospital, Enugu carries one of three labels. **Reported** = the hospital's head engineer, reproduced in Problem Brief 12; **published** = a cited public source; **modelled** = an engine result from open data (pre-feasibility, about ±30 %, to be confirmed with the hospital's load data, which is partner data still owed).
+
+| Input | Value | Label and source |
+|---|---|---|
+| Grid supply | about 6 h a day | reported (head engineer, Brief 12) |
+| Connected load | about 1,550 kW | reported |
+| Supply quality | sensitive equipment damaged by unstable supply; the theatre waits 10–30 s for the generator at every grid drop | reported |
+| Beds | 350 | brief / case file |
+| Grid class and substations | class D, "Poor"; 9 substations within 50 km | modelled from OpenStreetMap and the published supply hours |
+| Sun | 5.48 peak-sun hours a day | published open data, confirmed by NASA POWER, PVGIS, PVWatts and the Global Solar Atlas |
+| Diesel price | ₦3,277 a litre, up 86 % in a year | published (NBS Automotive Gas Oil price watch, national average for May 2026, not an Enugu pump price) |
+| Grid tariff | ₦160 /kWh | published (EERC Band A, Enugu State market) |
+| The move | a new building in about five years | the brief's scenario |
+
+**Engine results (modelled):** 1,670 kWp ground-mounted solar; a 5,020 kWh containerised energy system (8.7 h of protected load) in 3 energy containers (5 containers in all, with inverter skids and the UPS e-house); 500 kVA online UPS; the existing 1,000 kVA generator last. Critical load 303 kW (theatres 91 kW); protected load 641 kW; daily use ≈ 14,880 kWh; capex ₦3.85 bn. 4 of 4 stress tests pass; 100 % of the critical load in every modelled outage; any outage up to 24 h survived whatever hour it starts.
+
+**Before → after (engine, for the modelled outages)**
+
+| KPI for the protected load | Today (modelled) | With the system (modelled) |
+|---|---|---|
+| Theatre-hours a year without grid (12,480 a year, 4 suites) | 4,992 (40 %) | 0 |
+| Generator switchovers reaching equipment | about 1,460 a year | 0 (online UPS, 0 ms switchover, modelled) |
+| Diesel for the protected load | about 1,042,790 L a year | about 176,000 L a year after (866,678 L, 83 %, avoided) |
+| Diesel bill vs service fee | ₦299.2 M a month of modelled diesel (₦3.59 bn a year) | ₦69.1 M a month service fee (₦0.83 bn a year), ₦0 upfront |
+| All energy costs of the protected load, year one | ₦3,764.5 M (grid for 6 h + modelled diesel) | ₦1,588.9 M (fee + remaining diesel + remaining grid) |
+| All energy costs, 5 and 10 years | ₦18.8 bn · ₦37.6 bn | ₦7.9 bn · ₦15.9 bn (₦10.9 bn and ₦21.8 bn saved) |
+| Sun captured by the planned solar field | 0 | about 6.2 MWh a day captured, 5.9 MWh used by the system |
+| CO₂ | 2,795 t a year | 549 t a year (2,246 t net avoided = 2,323 t Scope 1 − 77 t Scope 2) |
+
+All engine results are pre-feasibility, about ±30 %, and will be re-run on the hospital's own load data when received. Two separate ways to pay: **as an ESCO service** (₦0 upfront), the service saves money from month one whenever the real diesel bill is above ₦117.9 M a month; **bought outright**, diesel savings alone repay the system and the year-5 move in 1.6 years. The service fee is the hospital's example energy-as-a-service cost, not GridRescue AI's revenue. Reproduce the figures with `python examples/quickstart.py`.
+
+---
+
 ## Proposition
 
-**For** hospital boards, engineers, funders and utilities on weak grids **who** must decide what backup power to buy before a full engineering study exists, **GridRescue AI** is an open, vendor-neutral planner that **turns a map pin into a tested, costed, relocatable backup-power plan and an ESG estimate in seconds**. It compares every storage family on one basis, proves each option hour by hour through real outage cases, and keeps the evidence and sources beside every number. It is the same-day first answer that a full study then confirms; it does not replace that study.
+**For** hospital boards, engineers, funders and utilities on weak grids **who** must decide what backup power to buy before a full engineering study exists, **GridRescue AI** is an open, vendor-neutral planner that **turns a map pin into a tested, costed, relocatable backup-power plan and an ESG estimate in seconds**. It compares every energy-system family on one basis, proves each option hour by hour through real outage cases, and keeps the evidence and sources beside every number. It is the same-day first answer that a full study then confirms; it does not replace that study.
 
 | Who | What they get |
 |---|---|
@@ -85,7 +147,7 @@ Global Energy Hackathon 2026 · Clean Energy Solutions · Brief 12 “Relocatabl
 
 ## Research problem and motivation
 
-**Problem.** Hospitals and other critical facilities on weak grids lose power for many hours a day. They bridge the gap with diesel, whose price can change sharply (₦3,277 a litre in Nigeria in May 2026, up 86 % in a year), and every switchover can damage equipment. The choice of a clean alternative is hard: there are dozens of storage and generation options, the right one depends on the site's sun, wind, water and grid, and a full engineering study takes weeks. When the facility must also move, as the National Orthopaedic Hospital in Enugu must within about five years, equipment fixed to today's roofs would be stranded.
+**Problem.** Hospitals and other critical facilities on weak grids lose power for many hours a day. They bridge the gap with diesel, whose price can change sharply (₦3,277 a litre in Nigeria in May 2026, up 86 % in a year), and every switchover can damage equipment. The choice of a clean alternative is hard: there are dozens of energy-system and generation options, the right one depends on the site's sun, wind, water and grid, and a full engineering study takes weeks. When the facility must also move, as the National Orthopaedic Hospital in Enugu must within about five years, equipment fixed to today's roofs would be stranded.
 
 **Motivation.** Decisions about backup power for operating theatres are safety decisions. They deserve evidence a non-specialist board can read and an engineer can check, before money is committed. Reporting rules point the same way: Nigeria's Financial Reporting Council is adopting the ISSB climate standards (IFRS S1 and S2), which ask for Scope 1 and Scope 2 emissions. Open global datasets now make a first, site-specific answer possible anywhere without paid data.
 
@@ -96,10 +158,10 @@ Global Energy Hackathon 2026 · Clean Energy Solutions · Brief 12 “Relocatabl
 ### Scientific contributions
 - A reproducible pre-feasibility method for critical-facility backup power that combines open-data site reading, rule-based sizing, an hourly outage dispatch, four stress tests and an outage survival curve.
 - A relocation case for a facility that must move: movable design, move plan, ownership and 5- and 10-year costs of diesel, grid and solar.
-- Emissions accounting that counts solar used during an outage once (Scope 1, diesel not burnt) and nets battery charging in Scope 2.
+- Emissions accounting that counts solar used during an outage once (Scope 1, diesel not burnt) and nets the grid power used to charge the energy system in Scope 2.
 
 ### Algorithmic contributions
-- A 24-hour dispatch with tiered load shedding (non-essential, then essential, critical last) and storage that serves only the protected bus.
+- A 24-hour dispatch with tiered load shedding (non-essential, then essential, critical last) and an energy system that serves only the protected bus.
 - Outage survival evaluated at every start hour of the day for 4 to 24 hours, following the approach of NREL's REopt.
 - A pure-Python Random Forest that imitates the engine's decisions, with a single CART tree as a readable explanation; the simulation verifies every pick.
 - Extractive, cited answers over an internal SQLite FTS5 index (BM25), with a single hook for a future language model.
@@ -133,7 +195,7 @@ No superiority is claimed; the evidence still required is listed in [docs/novelt
 | <img src="assets/readme/02_lens_sun_grid_scan.jpg" width="430" /><br/>**Sun lens + grid scan.** Peak-sun hours month by month (NASA POWER, PVGIS, PVWatts, Global Solar Atlas); grid strength within 50 and 100 km from OpenStreetMap substations and lines; reported supply hours; the published tariff beside the pin. | <img src="assets/readme/03_lens_wind.jpg" width="430" /><br/>**Wind lens.** 50 m wind speed by month and an hourly wind rose (NASA POWER, ERA5), with the energy a turbine could capture. |
 | <img src="assets/readme/04_lens_water.jpg" width="430" /><br/>**Water lens.** Rainfall, the nearest river and its discharge (GloFAS), terrain head — water for hydrogen or micro-hydro. | <img src="assets/readme/05_new_site_lens_locked.jpg" width="430" /><br/>**The hospital is moving.** The new-site lens ranks areas within 12 km by grid access and move distance; pick one and lock the site. |
 | <img src="assets/readme/06_plan_five_questions.jpg" width="430" /><br/>**The relocation plan** answers Brief 12's five questions with this site's numbers, each linked to its evidence. | <img src="assets/readme/07_two_sites_grid_lens.jpg" width="430" /><br/>**Two sites**: today and the new building, grid price at each, a grid-first feeder check, sun confirmed by four sources. |
-| <img src="assets/readme/08_energy_type_storage_compared.jpg" width="430" /><br/>**Energy type.** Every storage family simulated against this site (LFP containers, flow, hydrogen, …); if storage cannot be afforded yet the plan adapts: grid first, UPS on the theatres. | <img src="assets/readme/09_impact_esg.jpg" width="430" /><br/>**Impact.** The Three A's, diesel and CO₂ avoided, ESG lines, carbon value at the buyer's price — and **Download ESG report**. |
+| <img src="assets/readme/08_energy_type_compared.jpg" width="430" /><br/>**Energy type.** Every energy-system family simulated against this site (energy containers, flow, hydrogen, …); if the energy system cannot be afforded yet the plan adapts: grid first, UPS on the theatres. | <img src="assets/readme/09_impact_esg.jpg" width="430" /><br/>**Impact.** The Three A's, diesel and CO₂ avoided, ESG lines, carbon value at the buyer's price — and **Download ESG report**. |
 
 Also in the app: **Ask GridRescue** (top bar — answers with numbered sources from the internal knowledge base), **Facility** (the cost calculator and the live ML pick — diesel price, tariff and exchange rate with their sources, reported grid hours, the load), **Advisor** (recommendation, sizing, ranked options, affordability, investment case), **Compare** (8 architectures side by side), **Costs** (EPC split, cumulative cost vs diesel), **Learn**, **Report** (printable HTML / PDF / JSON) and **Hands** (walk the same design with one hand in front of the webcam, on-device MediaPipe hand tracking, or with the mouse).
 
@@ -141,23 +203,23 @@ Also in the app: **Ask GridRescue** (top bar — answers with numbered sources f
 
 ## Simulation types
 
-Every result is checked by an **hourly dispatch simulation**: solar and wind first, then storage, then the generator, shedding non-essential load first; critical load (theatres, ICU, burns) must never lose power.
+Every result is checked by an **hourly dispatch simulation**: solar and wind first, then the energy system, then the generator, shedding non-essential load first; critical load (theatres, ICU, burns) must never lose power.
 
 | Simulation | Where | What runs |
 |---|---|---|
 | **Outage cases on the map** | Explorer → *Simulate this outage* | Evening load-shedding 6 h · overnight outage 12 h · national grid collapse 24 h · daytime feeder fault 4 h |
 | **Outage survival (any start hour)** | Advisor | The outage is started at each of the 24 hours of the day, for 4, 8, 12, 18 and 24 h; the share of starts in which the critical load is fully served — the resilience measure used by NREL's REopt |
 | **Stress tests on every design** | Advisor · Simulate · Plan | 12 h evening outage (the design case) · 24 h national grid collapse · worst solar month · 18 h longer outage — a design passes only if the critical load is served in all four |
-| **The hospital's own site in 3D** | Simulate (`/simulation`) | The real building on the map with ground-mount solar, battery containers, theatre UPS and generator; play or scrub the day, energy flows animate, outage timeline UPS 0 ms → storage + sun carry → grid back |
+| **The hospital's own site in 3D** | Simulate (`/simulation`) | The real building on the map with ground-mount solar, energy containers, theatre UPS and generator; play or scrub the day, energy flows animate, outage timeline UPS 0 ms (modelled) → energy system + sun carry → grid back |
 | **Any location, through any lens** | Simulate, after picking a place | Pick a different place in the Explorer and open Simulate: the engine runs for that place, and the scene, the card and the report are tagged with it (place, coordinates, sun · wind · water, grid). The **Sun · Wind · Water** lens picks the design that uses that resource — solar, a wind turbine, or water (hydrogen from the site's water, or river-linked) — and says plainly when the resource is not viable there (e.g. wind in Kano at 4.3 m/s) |
-| **Build 3D · hospital** | Build 3D (`/build`) | Step-by-step site build (sun, wind or water; storage; controls; generator) and a 72-hour test: thunderstorm 6 h · safety shut-off 36 h · winter storm 48 h · hurricane landfall 72 h, with the simulation graphs |
-| **Build 3D · night maintenance crew** | Build 3D → *2 · Maintenance work* | A rail crew's diesel generator replaced by a depot-charged battery trailer; three night shifts in a row, or three cloudy ones; noise 45 dBA vs 68 dBA |
+| **Build 3D · hospital** | Build 3D (`/build`) | Step-by-step site build (sun, wind or water; energy system; controls; generator) and a 72-hour test: thunderstorm 6 h · safety shut-off 36 h · winter storm 48 h · hurricane landfall 72 h, with the simulation graphs |
+| **Build 3D · night maintenance crew** | Build 3D → *2 · Maintenance work* | A rail crew's diesel generator replaced by a depot-charged energy trailer; three night shifts in a row, or three cloudy ones; noise 45 dBA vs 68 dBA |
 
 | | |
 |---|---|
-| <img src="assets/readme/11_sim_hospital_overnight_outage.jpg" width="430" /><br/>**Overnight outage, 20:00** — the grid is out, the UPS switched in 0 ms, storage and sun carry the theatres; all four outage cases covered. | <img src="assets/readme/12_sim_national_grid_collapse_24h.jpg" width="430" /><br/>**National grid collapse, 24 h** — storage is resized for the full day; the outage timeline shows grid back the next day. |
-| <img src="assets/readme/13_build3d_hospital_outage_test.jpg" width="430" /><br/>**Build 3D · hospital outage test** — islanded at 20:00, storage and generator carry the essential load. | <img src="assets/readme/14_build3d_simulation_graphs.jpg" width="430" /><br/>**Simulation graphs** — who supplies the load hour by hour, and the storage charge, for the whole system or each part. |
-| <img src="assets/readme/15_build3d_rail_crew_night_shift.jpg" width="430" /><br/>**Night rail crew, 23:30** — the crew on shift on battery power; every shift fully powered. | <img src="assets/readme/01_home_aaa.jpg" width="430" /><br/>**Home** — the brief's numbers and the Three A's; start from today's site, then the new one. |
+| <img src="assets/readme/11_sim_hospital_overnight_outage.jpg" width="430" /><br/>**Overnight outage, 20:00** — the grid is out, the UPS switched in 0 ms (modelled), the energy system and sun carry the theatres; all four outage cases covered. | <img src="assets/readme/12_sim_national_grid_collapse_24h.jpg" width="430" /><br/>**National grid collapse, 24 h** — the energy system is resized for the full day; the outage timeline shows grid back the next day. |
+| <img src="assets/readme/13_build3d_hospital_outage_test.jpg" width="430" /><br/>**Build 3D · hospital outage test** — islanded at 20:00, the energy system and generator carry the essential load. | <img src="assets/readme/14_build3d_simulation_graphs.jpg" width="430" /><br/>**Simulation graphs** — who supplies the load hour by hour, and the energy system's state of charge, for the whole system or each part. |
+| <img src="assets/readme/15_build3d_rail_crew_night_shift.jpg" width="430" /><br/>**Night rail crew, 23:30** — the crew on shift on the energy trailer; every shift fully powered. | <img src="assets/readme/01_home_aaa.jpg" width="430" /><br/>**Home** — the brief's numbers and the Three A's; start from today's site, then the new one. |
 
 ---
 
@@ -223,11 +285,11 @@ flowchart LR
 * **Agent** (`engine/agent.py`): a deterministic, tool-using loop returned with every assessment — observe → classify with the ML model → verify with the hourly simulation → stress-test → affordability → decide, with mitigations when a test fails. Every step records its evidence; no external AI service or key is needed.
 * **Prices are published figures only** (`backend/app/data/tariffs.json`, each with its source).
 
-Component responsibilities, interfaces, storage and design decisions: [docs/architecture.md](docs/architecture.md).
+Component responsibilities, interfaces, data persistence and design decisions: [docs/architecture.md](docs/architecture.md).
 
 ### The ML model — classical supervised classification
 
-**What it answers.** Which family of energy system suits this facility's configuration at this site: solar + battery, solar + battery + generator, generator + battery, grid-charged battery, solar + wind + battery, wind + battery, solar + flow battery, solar + hydrogen, pumped hydro or UPS only.
+**What it answers.** Which family of energy system suits this facility's configuration at this site: solar + energy system, solar + energy system + generator, generator + energy system, grid-charged energy system, solar + wind + energy system, wind + energy system, solar + flow system, solar + hydrogen, pumped hydro or UPS only.
 
 **Algorithm.** A **Random Forest** — 30 **CART decision trees** (Gini impurity), each grown on a bootstrap sample of the training sites and choosing every split among a random √(21) ≈ 5 of the 21 inputs (bagging + random feature subsets). The trees vote; the share of the vote is the probability of each family. A single CART tree trained on the same data gives the **readable rules** shown beside the pick (for example *required backup ≤ 36 h AND solar ≥ 4.2 peak-sun hours*). Pure Python, no ML library (`backend/app/ml/backup_classifier.py`).
 
@@ -239,7 +301,7 @@ Component responsibilities, interfaces, storage and design decisions: [docs/arch
 
 **Accuracy on 2,000 unseen sites.** Random Forest **80.4 %** (top-2: **94.5 %**) · single decision tree 76.9 % · always guessing the most common answer 46.5 %. Model card: `GET /api/ml/model`.
 
-**Where it shows.** The **Advisor** page ("ML pick · best-suited system": family, share of the vote, top three, the rules, and whether the hourly simulation agrees), the **Facility** page (the pick updates live as you change the configuration — `POST /api/ml/predict`), the **Simulate** page and the agent's trace. **The hourly simulation decides**: the ML pick is the fast first answer, and when the simulation prefers another design the page says so. Rare designs (wind-only, flow batteries) are under-represented in the training labels, which is one more reason the simulation verifies every pick.
+**Where it shows.** The **Advisor** page ("ML pick · best-suited system": family, share of the vote, top three, the rules, and whether the hourly simulation agrees), the **Facility** page (the pick updates live as you change the configuration — `POST /api/ml/predict`), the **Simulate** page and the agent's trace. **The hourly simulation decides**: the ML pick is the fast first answer, and when the simulation prefers another design the page says so. Rare designs (wind-only, flow systems) are under-represented in the training labels, which is one more reason the simulation verifies every pick.
 
 Model card: [MODEL_CARD.md](MODEL_CARD.md).
 
@@ -328,7 +390,7 @@ python examples/quickstart.py             # the Enugu worked example, from live 
 python examples/quickstart.py --offline   # bundled snapshots only
 ```
 
-It prints the design (1,670 kWp solar, 5,020 kWh storage, 500 kVA UPS, the existing 1,000 kVA generator last), 100 % of the critical load served, 4/4 stress tests, 866,678 L of diesel and 2,246 t of CO₂ avoided a year. Offline, the design is the same and the hourly weather is modelled, giving 845,654 L and 2,344 t. See [examples/](examples/).
+It prints the design (1,670 kWp solar, a 5,020 kWh containerised energy system, 500 kVA UPS, the existing 1,000 kVA generator last), 100 % of the critical load served, 4/4 stress tests, 866,678 L of diesel and 2,246 t of CO₂ avoided a year. Offline, the design is the same and the hourly weather is modelled, giving 845,654 L and 2,344 t. See [examples/](examples/).
 
 **Offline / venue mode:** set `GR_OFFLINE=1` before starting. **Production build:** `cd frontend && npm run build && npm run preview`.
 
@@ -416,10 +478,11 @@ All final hackathon documents are in [`FINAL_DOC/`](FINAL_DOC/):
 
 | Folder | Contents |
 |---|---|
-| `1_POC_ONE PAGER/` | POC summary (4 pages) and the one-page **Access · Affordability · Availability** sheet, as DOCX and PDF |
+| `1_POC_ONE PAGER/` | POC summary (v2) and the one-page **Access · Affordability · Availability** sheet, as DOCX and PDF |
 | `2_PPT_Template_5_slides/` | The 5-slide pitch deck (PPTX and PDF) |
 | `3_DEMO_VEDIO/` | Demo video — the proof of concept, recorded from the running app (MP4) |
 | `4_Pitch_VEDIO/` | Pitch video — the hospital customer and the GridRescue advisor (MP4) |
+| `5_Addtional_DOC/` | Business Model Canvas (PDF and PNG), investor canvas and ROI (PDF and PNG), financial model (XLSX and PDF), disclosure statement (DOCX and PDF) |
 
 Large video files: GitHub accepts files up to 100 MB by `git push` (the web uploader stops at 25 MB).
 
@@ -436,7 +499,7 @@ Large video files: GitHub accepts files up to 100 MB by `git push` (the web uplo
 | Hospital on today's site and the next | built |
 | Night maintenance crew (rail) off diesel | built |
 | Utilities: weak feeders, grid-first options | built (feeder check, grid lens) |
-| Clinic cold storage on the same supply | extension |
+| Clinic cold chain on the same supply | extension |
 | Surplus solar shared with the grid or neighbours where tariffs allow | extension |
 | Charging points in the hospital car park | extension |
 | Telecom towers and other critical sites | extension |
@@ -473,10 +536,14 @@ For a production deployment: sign-in and roles per hospital, HTTPS, rate limitin
 | The outage simulation runs on a typical design day (24 h); outages longer than a day are approximated by the 24 h national-collapse case | A full-year (8,760 h) simulation and multi-day outages |
 | Costs are pre-feasibility (±30 %) from published libraries | Two local EPC quotes against the sizing sheet |
 | The new building site in the worked example is an illustrative pin | The hospital's real plot |
-| The ML model rarely sees wind-only or flow-battery designs, so it does not pick them; the hourly simulation still checks every pick | More training sites in windy and deep-cycling conditions |
+| The ML model rarely sees wind-only or flow-system designs, so it does not pick them; the hourly simulation still checks every pick | More training sites in windy and deep-cycling conditions |
 | Ask GridRescue answers by retrieval only (no language model) | Connect a language model behind the same retrieval and citations |
 
-The full list, including data, model, generalisation, security and licensing notes: [docs/limitations.md](docs/limitations.md).
+Where the limits are written down:
+
+- [docs/limitations.md](docs/limitations.md) — the full list: scientific, data, model, generalisation, computational, security, deployment and licensing limits, and what still needs validation.
+- [`FINAL_DOC/5_Addtional_DOC/`](FINAL_DOC/5_Addtional_DOC/) — the disclosure statement (what was built during the hackathon, the pre-existing base, the AI tools used), next to the Business Model Canvas and the financial model.
+- [Worked example: inputs and assumptions](#worked-example-inputs-and-assumptions) above — the reported / published / modelled labels and the ±30 % band on every engine figure.
 
 ---
 
@@ -557,7 +624,7 @@ GridRescue_AI/
 ├─ benchmarks/              classifier evaluation and its results
 ├─ docs/                    architecture, methodology, positioning, use cases, reproducibility, impact, limitations, release guide, release notes
 ├─ assets/readme/           the pictures in this README
-├─ FINAL_DOC/               hackathon submission: POC summary, one-pager, deck, demo and pitch videos
+├─ FINAL_DOC/               hackathon submission: POC summary, one-pager, deck, demo and pitch videos, canvas, financial model, disclosure statement
 ├─ .github/                 CI, issue forms, pull-request template, Dependabot
 ├─ START.bat · start.sh     one-click start
 ├─ CITATION.cff · LICENSE · NOTICE · MODEL_CARD.md · DATA_CARD.md

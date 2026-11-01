@@ -37,7 +37,7 @@ await settle(); await sleep(2); await shot('05_new_site_lens_locked')
 // The relocation plan
 await tid('open-plan').click(); await page.waitForURL(/\/case/, { timeout: 180000 }); await tid('answer-q1').waitFor(); await settle(); await sleep(1.5); await shot('06_plan_five_questions')
 await tid('tab-sites').click(); await settle(); await sleep(2); await shot('07_two_sites_grid_lens')
-await tid('tab-energy').click(); await sleep(1.5); await shot('08_energy_type_storage_compared')
+await tid('tab-energy').click(); await sleep(1.5); await shot('08_energy_type_compared')
 await tid('tab-impact').click(); await sleep(1); await tid('carbon-price').fill('15'); await tid('esg').scrollIntoViewIfNeeded(); await sleep(1); await shot('09_impact_esg')
 // the downloaded ESG report, opened like a board member would
 const [dl] = await Promise.all([page.waitForEvent('download'), tid('esg-download').click()])

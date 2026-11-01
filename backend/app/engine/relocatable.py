@@ -475,6 +475,34 @@ def build_relocatable_case(rec: dict, load: dict, site: dict, fac: dict, investm
                             f"Social: {crit_pk:,.0f} kW of theatres, ICU and burns on uninterrupted power; {impact['theatre_hours_uninterrupted']:,} theatre-hours a year",
                             f"Governance: no asset on the federal register; energy-as-a-service contract with metered output, uptime guarantee and a relocation clause; open-data sizing anyone can re-run"]}
 
+    # ── 9b. Before → after: the four numbers a board compares (engine results for the modelled outages) ────────
+    KG_CO2_PER_L = 2.68   # IPCC default, the same factor as investment.py
+    base_l = float(do_nothing["diesel_litres_per_year"]); sys_l = max(0.0, base_l - inv["diesel_avoided_l_per_year"])
+    co2_before = base_l * KG_CO2_PER_L / 1000; co2_after = max(0.0, co2_before - co2_y)
+    y1 = at(1)
+    all_pass = bool(tests) and passed == len(tests) and crit_served >= 100
+    before_after = {
+        "rows": [
+            {"id": "critical", "label": "Theatre-hours a year without grid power",
+             "before": f"{impact['theatre_hours_on_diesel_today']:,} h ({impact['theatre_share_without_grid_pct']} %)",
+             "after": "0 h" if all_pass else f"{crit_served:g} % of the critical load served",
+             "note": (f"{crit_served:g} % of the critical load in all {len(tests)} modelled outages; 0 ms switchover by the online UPS (modelled)"
+                      if all_pass else f"{impact['stress_tests_passed'] or '—'} stress tests passed")},
+            {"id": "diesel", "label": "Diesel for the protected load, a year",
+             "before": f"{base_l:,.0f} L", "after": f"{sys_l:,.0f} L",
+             "note": f"{inv['diesel_avoided_l_per_year']:,} L avoided ({cost_model['diesel_share_avoided_pct']} %)"},
+            {"id": "cost", "label": "Energy cost of the protected load, year one",
+             "before": f"₦{y1['diesel_ngn_m']:,.0f} M", "after": f"₦{y1['solar_ngn_m']:,.0f} M",
+             "note": f"grid + modelled diesel today → grid + service fee (₦{ownership['fee_ngn_m_per_month']:,.1f} M a month, ₦0 upfront); saves ₦{y1['saving_vs_diesel_ngn_m']:,.0f} M"},
+            {"id": "co2", "label": "CO₂ a year",
+             "before": f"{co2_before:,.0f} t", "after": f"{co2_after:,.0f} t",
+             "note": f"{co2_y:,.0f} t avoided, net: diesel not burnt (Scope 1) minus the grid power that charges the batteries (Scope 2)"},
+        ],
+        "basis": "Engine results for the modelled outages at this site (±30 %). The hospital's load audit and fuel logs replace the modelled baseline.",
+        "values": {"diesel_before_l": round(base_l), "diesel_after_l": round(sys_l), "cost_before_ngn_m": y1["diesel_ngn_m"], "cost_after_ngn_m": y1["solar_ngn_m"],
+                   "co2_before_t": round(co2_before), "co2_after_t": round(co2_after), "theatre_hours_before": impact["theatre_hours_on_diesel_today"], "all_pass": all_pass},
+    }
+
     two_sites = None
     if new_site:
         today = {"psh": site["solar"]["annual_psh"], "grid_class": site["grid"]["class"], "grid_label": site["grid"]["label"], "supply_hours": supply_h}
@@ -490,7 +518,7 @@ def build_relocatable_case(rec: dict, load: dict, site: dict, fac: dict, investm
                       "cost_ngn_m": ngn_m(move_cost), "cost_pct": round(100 * move_cost / max(capex, 1), 1), "reuse_pct": reuse_pct,
                       "stranded_if_rooftop_ngn_m": ngn_m(stranded_if_rooftop), "duration": "about 3 weeks; theatres stay on UPS and diesel throughout"},
         "ownership": ownership, "cost_model": cost_model, "funders": funders, "impact": impact, "metrics": metrics, "three_as": three_as,
-        "two_sites": two_sites, "mobile_storage": mobile_storage, "energy_type": energy_type, "adapt": adapt, "no_sun": no_sun, "esg": esg,
+        "two_sites": two_sites, "before_after": before_after, "mobile_storage": mobile_storage, "energy_type": energy_type, "adapt": adapt, "no_sun": no_sun, "esg": esg,
         "assumptions": [
             {"label": "Load split", "value": "Theatres 30 % of critical load, ICU 20 %, imaging 15 % …", "note": "planning split for an orthopaedic hospital — replace with the load audit"},
             {"label": "Theatres", "value": f"{reloc['theatre_suites']} suites × {reloc['theatre_hours_per_day']:g} h × {reloc['theatre_days_per_week']} days", "note": "replace with the theatre schedule"},

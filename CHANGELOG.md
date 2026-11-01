@@ -25,11 +25,11 @@ First public release: the proof of concept for Global Energy Hackathon 2026, Bri
 - **One-click start**: `START.bat` checks Python and Node.js, installs on the first run, starts both servers, waits until they answer and opens the app; `start.sh` does the same on Linux and macOS. `GR_UI_PORT` selects another app port.
 - **Tests**: 63 pytest tests, 23 vitest tests and 10 Playwright GUI specs; GitHub Actions CI.
 - **Research-repository files**: licence, citation metadata, contributing guide, code of conduct, security policy, model and data cards, documentation in `docs/`, a quick-start example and a reproducible ML evaluation.
-- **Submission package** in `FINAL_DOC/`: POC summary, one-pager, 5-slide deck, demo video (4:48) and pitch video (4:48, v7).
+- **Submission package** in `FINAL_DOC/`: POC summary, one-pager, 5-slide deck, demo video (v7, under 5 minutes), pitch video (v3, under 5 minutes), Business Model Canvas, financial model, investor canvas and ROI, and disclosure statement.
 
 ### Changed
 
-- **CO₂ method.** Solar power used during an outage was counted twice, once as diesel not burnt and once as grid electricity not bought. It is now counted once. Scope 1 is the diesel no longer burnt. Scope 2 is the change in grid electricity bought while the grid is on, which can be negative when the batteries charge from the grid. For the worked example, avoided CO₂ falls from 3,222 t to 2,246 t a year (2,323 t Scope 1 minus 77 t Scope 2). The figures in the documents and videos were updated to match.
+- **CO₂ method.** Solar power used during an outage was counted twice, once as diesel not burnt and once as grid electricity not bought. It is now counted once. Scope 1 is the diesel no longer burnt. Scope 2 is the change in grid electricity bought while the grid is on, which can be negative when the energy system charges from the grid. For the worked example, avoided CO₂ falls from 3,222 t to 2,246 t a year (2,323 t Scope 1 minus 77 t Scope 2). The figures in the documents and videos were updated to match.
 - The ML training script takes `--n`, `--seed`, `--trees` and `--out` options, so the evaluation can be reproduced without replacing the shipped model.
 
 ### Fixed
