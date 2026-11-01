@@ -25,3 +25,9 @@ def test_worked_example_headline_figures(client):
     s1, s2, total = inv["co2_scope1_avoided_t"], inv["co2_scope2_avoided_t"], inv["co2_avoided_t_per_year"]
     assert round(s1) == 2266 and round(s2) == 78 and abs(s1 + s2 - total) < 1   # 2,323 − 77 = 2,246 t with live data
     assert round(total) == 2344 == round(j["relocatable_case"]["esg"]["co2_t_per_year"])
+    # the before → after block the plan's Impact tab shows: four rows, each better with the system
+    ba = j["relocatable_case"]["before_after"]
+    assert [r["id"] for r in ba["rows"]] == ["critical", "diesel", "cost", "co2"]
+    v = ba["values"]
+    assert v["all_pass"] and v["theatre_hours_before"] == 4992
+    assert v["diesel_before_l"] > v["diesel_after_l"] and v["cost_before_ngn_m"] > v["cost_after_ngn_m"] and v["co2_before_t"] > v["co2_after_t"]

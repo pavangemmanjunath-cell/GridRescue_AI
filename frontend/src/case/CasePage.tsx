@@ -384,6 +384,18 @@ export function CasePage() {
             <ul className="gr-checks" style={{ marginTop: 6 }}>{rc.three_as[k].facts.map((f: string) => <li key={f}><Icon name="check" size={13} />{f}</li>)}</ul>
           </Card>))}
       </div>
+      {(rc as any).before_after && (
+        <Card className="gr-card-tight" data-testid="before-after">
+          <div className="gr-card-head"><div className="gr-eyebrow">Before → after · the four numbers a board compares</div><Chip kind="model">modelled</Chip></div>
+          <table className="gr-table gr-table-tight gr-before-after"><thead><tr><th></th><th>Today</th><th>With the recommended design</th></tr></thead>
+            <tbody>{(rc as any).before_after.rows.map((r: any) => (
+              <tr key={r.id} data-testid={`ba-${r.id}`}><td style={{ color: '#fff' }}>{r.label}{r.note && <div className="gr-muted" style={{ fontSize: 11 }}>{r.note}</div>}</td>
+                <td className="num" style={{ color: 'var(--gr-danger)', fontWeight: 700, whiteSpace: 'nowrap' }}>{r.before}</td>
+                <td className="num" style={{ color: 'var(--gr-rescue)', fontWeight: 700, whiteSpace: 'nowrap' }}>{r.after}</td></tr>))}
+            </tbody></table>
+          <div className="gr-muted" style={{ fontSize: 11.5, marginTop: 6 }}>{(rc as any).before_after.basis}</div>
+        </Card>
+      )}
       <Card className="gr-card-tight">
         <div className="gr-eyebrow">One-page impact estimate · the brief's success metrics</div>
         <table className="gr-table gr-table-tight" data-testid="metrics"><tbody>

@@ -1,0 +1,50 @@
+[
+ {
+  "id": "home",
+  "text": "What we built during the Global Energy Hackathon: GridRescue AI, decision-support software for hospitals on weak grids. A grid mapper that reads any site from open data. A relocation plan that answers the brief's five questions. An hour-by-hour outage simulation, with a machine-learning classification of the energy system. And an ESG report. The case: the National Orthopaedic Hospital, Enugu: about six hours of grid a day, a theatre that waits for the generator, and a move in five years. Here is one hospital, end to end."
+ },
+ {
+  "id": "pin",
+  "text": "Step one, the pin drop. The pin sits at Abakpa Junction, Enugu, and GridRescue reads the site."
+ },
+ {
+  "id": "site",
+  "text": "Step two, the site read. Five point four eight peak-sun hours a day, from NASA POWER, P V G I S, PVWatts and the Global Solar Atlas. Nine substations within fifty kilometres, from OpenStreetMap; yet six hours of supply a day, as the hospital's head engineer reports; our grid read: class D, poor. The published tariff: one hundred and sixty naira per kilowatt hour."
+ },
+ {
+  "id": "moving",
+  "text": "The hospital must move, so we switch on hospital is moving. The new-site lens scores areas within twelve kilometres on grid access and distance. The best is four kilometres north, with a substation one point three kilometres away. We pick it, and lock the site."
+ },
+ {
+  "id": "plan",
+  "text": "The relocation plan answers the brief's five questions: which loads must never lose power, how the system moves, who owns it, whether diesel savings repay it, and which funders have backed similar projects."
+ },
+ {
+  "id": "sim",
+  "text": "Step three, the outage simulation, in three D on the hospital's own site. At six in the evening the grid drops. The online U P S switches the theatres in zero milliseconds, modelled; the energy containers carry the theatres, I C U and burns through the night; the generator stays last."
+ },
+ {
+  "id": "design",
+  "text": "Step four, the recommended design. Best for this site: ground-mounted solar, one thousand six hundred and seventy kilowatts peak; a containerised energy system, five thousand kilowatt hours; the theatre U P S; and the existing generator, last. The machine-learning classifier, trained on synthetic sites, picks this energy system at seventy-six percent; the hourly simulation makes the final call."
+ },
+ {
+  "id": "tests",
+  "text": "Four outage cases are tested: the twelve-hour design outage, a twenty-four-hour national grid collapse, the worst solar month, and an eighteen-hour outage. All four covered, one hundred percent of the critical load in the model. This is the national collapse."
+ },
+ {
+  "id": "money",
+  "text": "Step five, cost and payback. No upfront capital: an energy service company owns the system and charges sixty-nine million naira a month, against about three hundred million of modelled diesel. Bought outright instead, diesel savings repay the system and the move in one point six years. Over ten years: thirty-seven point six billion naira on diesel, fifteen point nine billion on the service. The funders are named."
+ },
+ {
+  "id": "results",
+  "text": "Step six, the results, before and after. Theatre-hours without grid power: four thousand nine hundred and ninety-two a year today, zero on the system. Diesel for the protected load: about 1.04 million litres a year, down to about 176 thousand. Energy cost of the protected load, year one: 3.8 billion naira to 1.6 billion. Carbon dioxide: 2,795 tonnes a year to 549; two thousand two hundred and forty-six tonnes avoided, net."
+ },
+ {
+  "id": "esg",
+  "text": "The ESG report, one click, for the board: Scope one, the diesel no longer burnt; Scope two, the grid power bought, netted off; environment, social and governance lines; and carbon credits valued only after verification."
+ },
+ {
+  "id": "close",
+  "text": "Every number is a modelled engine result, to be confirmed with the hospital's load audit and fuel logs. One simulation covers every outage type: grid load-shedding, transmission and substation failures, severe weather and diesel shortages are tested today. Next come area-based outages, from one feeder to a district or a whole state, and cybersecurity outages that cut the grid, communication or control, as further stress scenarios. Hospitals and health networks pay GridRescue for the assessment and an annual licence; any pin on the map works, so it scales to every critical facility. GridRescue AI turns energy planning into investment-ready decisions. We start with hospitals, where power is life, and grow to every critical facility. Map the grid. Keep the theatres on. Move with the hospital."
+ }
+]
